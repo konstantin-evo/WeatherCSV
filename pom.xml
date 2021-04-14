@@ -19,6 +19,12 @@
             <artifactId>commons-csv</artifactId>
             <version>1.8</version>
         </dependency>
+
+        <dependency>
+            <groupId>edu.duke.cs</groupId>
+            <artifactId>ospreyservice</artifactId>
+            <version>0.2</version>
+        </dependency>
     </dependencies>
 
 </project>
