@@ -31,6 +31,33 @@ public class CSVMax {
                 " at " + largest.get("TimeEST"));
     }
 
+    public CSVRecord hottestHourManyDays(){
+        DirectoryResource dr = new DirectoryResource();
+        CSVRecord largestSoFar = null; //start with largestSoFar as nothing
+
+        for (File file : dr.selectedFiles()) {
+            FileResource fr = new FileResource(file);
+            CSVRecord currentRow = hottestHourInFile(fr.getCSVParser());
+
+            if (largestSoFar == null) {
+                largestSoFar = currentRow;
+            } else {
+                double currentTemp = Double.parseDouble(currentRow.get("TemperatureF"));
+                double largestTemp = Double.parseDouble(largestSoFar.get("TemperatureF"));
+
+                if (currentTemp>largestTemp) {
+                    largestSoFar = currentRow;
+                }
+            }
+        }
+        return largestSoFar;
+    }
+
+    public void testHottestHourManyDays() {
+        CSVRecord largest = hottestHourManyDays();
+        System.out.println("The hottest temperature was "+largest+" at "+largest.get("DateUTC"));
+    }
+
     public static void main(String[] args) {
         CSVMax o = new CSVMax();
         o.testHottestInDay();
