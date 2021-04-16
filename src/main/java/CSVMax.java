@@ -4,20 +4,24 @@ import java.io.*;
 
 public class CSVMax {
     public CSVRecord hottestHourInFile(CSVParser parser) {
-        //start with largestSoFar as nothing
 
-        //For each row (currentRow) in the CSV File
+        CSVRecord largestSoFar = null; //start with largestSoFar as nothing
 
-        //If largestSoFar is nothing
+        for (CSVRecord currentRow : parser) {//For each row (currentRow) in the CSV File
+            if (largestSoFar == null) {//If largestSoFar is nothing
+                largestSoFar = currentRow;
+            } else {
+                double currentTemp = Double.parseDouble(currentRow.get("TemperatureF"));
+                double largestTemp = Double.parseDouble(largestSoFar.get("TemperatureF"));
 
-        //Otherwise
+                if (currentTemp>largestTemp) {
+                    largestSoFar = currentRow;
+                }
 
-        //Check if currentRow’s temperature > largestSoFar’s
+            }
 
-        //If so update largestSoFar to currentRow
-
-        //The largestSoFar is the answer
-
+        }
+        return largestSoFar;
     }
 
     public void testHottestInDay () {
