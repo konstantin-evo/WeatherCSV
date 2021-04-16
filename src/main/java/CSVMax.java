@@ -25,9 +25,14 @@ public class CSVMax {
     }
 
     public void testHottestInDay () {
-        FileResource fr = new FileResource("data/2015/weather-2015-01-02.csv");
+        FileResource fr = new FileResource("C:/Users/kpriluch/IdeaProjects/WeatherCSV/src/main/resources/data/2015/weather-2015-01-01.csv");
         CSVRecord largest = hottestHourInFile(fr.getCSVParser());
         System.out.println("hottest temperature was " + largest.get("TemperatureF") +
                 " at " + largest.get("TimeEST"));
+    }
+
+    public static void main(String[] args) {
+        CSVMax o = new CSVMax();
+        o.testHottestInDay();
     }
 }
