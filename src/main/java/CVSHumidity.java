@@ -7,7 +7,7 @@ public class CVSHumidity {
     public CSVRecord getMinimumOfTwo(CSVRecord currentRow, CSVRecord minimumRow) {
         if (minimumRow == null) {
             minimumRow = currentRow;
-        } else if (currentRow.get("Humidity") != "N/A"){
+        } else if (!currentRow.get("Humidity").equals("N/A")){
             double currentHumidity = Double.parseDouble(currentRow.get("Humidity"));
             double minimumHumidity = Double.parseDouble(minimumRow.get("Humidity"));
 
