@@ -33,25 +33,26 @@ public class CSVMin {
                 " at " + minimum.get("TimeEST"));
     }
 
-    public String fileWithColdestTemperature() {
+    public File fileWithColdestTemperature() {
         DirectoryResource dr = new DirectoryResource();
         CSVRecord minimumRow = null;
-        String coldestFileName = null;
+        File coldestFile = null;
 
         for (File file : dr.selectedFiles()) {
             FileResource fr = new FileResource(file);
             CSVRecord currentRow = minimumHourInFile(fr.getCSVParser());
             minimumRow = getMinimumOfTwo(currentRow, minimumRow);
-            coldestFileName = file.getName();
+            coldestFile = file;
         }
-        return coldestFileName;
+        return coldestFile;
     }
 
     public void testFileWithColdestTemperature() {
-        String coldestname = fileWithColdestTemperature();
-        System.out.println("Coldest day was in file " + coldestname);
+        File coldestFile = fileWithColdestTemperature();
+        String coldestName = coldestFile.getName();
+        System.out.println("Coldest day was in file " + coldestName);
 
-        FileResource fr = new FileResource();
+        FileResource fr = new FileResource(coldestFile);
         CSVRecord minimum = minimumHourInFile(fr.getCSVParser());
         System.out.println("Minimum temperature was " + minimum.get("TemperatureF") +
                 " at " + minimum.get("TimeEST"));
@@ -60,7 +61,7 @@ public class CSVMin {
     public static void main(String[] args) {
         CSVMin o = new CSVMin();
         //o.testMinimumInDay();
-        System.out.println(o.fileWithColdestTemperature());
+        o.testFileWithColdestTemperature();
     }
 
 }
