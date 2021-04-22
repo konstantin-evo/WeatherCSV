@@ -30,7 +30,7 @@ public class CSVMin {
         FileResource fr = new FileResource();
         CSVRecord minimum = minimumHourInFile(fr.getCSVParser());
         System.out.println("Minimum temperature was " + minimum.get("TemperatureF") +
-                " at " + minimum.get("TimeEST"));
+                " at " + minimum.get("DateUTC"));
     }
 
     public File fileWithColdestTemperature() {
